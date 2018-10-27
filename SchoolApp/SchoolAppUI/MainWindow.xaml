@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolAppUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Width="650" Height="300" MinHeight="300" MinWidth="650" MaxWidth="650" MaxHeight="300">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MaxWidth="300" MinWidth="300"/>
+            <ColumnDefinition Width="auto" MinWidth="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Name="heading" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Content="Please enter your user details" Margin="10,0,286,0" Width="306" Grid.ColumnSpan="2"/>
+        <!--username and password section-->
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label Grid.Row="1" Grid.Column="0" Content="Username" FontSize="15" HorizontalAlignment="Right" Margin="30,0"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Password" FontSize="15" HorizontalAlignment="Right" Margin="30,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBox Name="txtUsername" Grid.Row="1" Grid.Column="1" Height="auto" Margin="1,5" Width="250"/>
+            <PasswordBox Name="txtPassword" Grid.Row="2" Grid.Column="1" Height="auto" Margin="1,5" Width="250"/>
+        </StackPanel>
+        <!--button section-->
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="72,0,68,0" Width="160">
+            <Button Name="btnCancel" Content="Cancel" Height="25" Width="60" Margin="10"/>
+            <Button Name="btnCLogin" Content="Login" Height="25" Width="60" Margin="10"/>
+        </StackPanel>
     </Grid>
 </Window>
