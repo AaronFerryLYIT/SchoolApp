@@ -5,18 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolAppUI"
         mc:Ignorable="d"
-        Title="Dashboard" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen" 
+        Title="Dashboard" Height="550" Width="800" MinHeight="550" MinWidth="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/background.jpg" Opacity=".15" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="83*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Teacher Name" HorizontalAlignment="Center" FontSize="25"/>
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-            <Button Content="View Students" FontSize="15" Width="110" Height="25"/>
+        <!--Heading name and button menu-->
+        <Label Name="userName" Grid.Row="0" Grid.Column="0" Content="Teacher Name" HorizontalAlignment="Center" FontSize="25"/>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,045,0,0">
+            <Button Name="viewStud" Content="View Students" FontSize="15" Width="130" Height="25" Margin="0,0,5,0"/>
+            <Button Name="addResult" Content="Add Result" FontSize="15" Width="130" Height="25"/>
+            <Button Name="viewStats" Content="View Performance" FontSize="15" Width="130" Height="25" Margin="5,0,5,0"/>
+            <Button Name="viewResult" Content="View Results" FontSize="15" Width="130" Height="25" Visibility="Collapsed"/>
+            <TextBox Name="txtBoxSearch" Width="140" Height="25" BorderBrush="Black"/>
+            <Button Name="search" Content="Search" FontSize="15" Width="130" Height="25"/>
         </StackPanel>
+        <DockPanel Grid.Column="0" Grid.Row="1" Margin="5,0,5,5">
+            <Border BorderThickness="3" BorderBrush="Black" CornerRadius="10" Padding="10">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" Opacity=".5" ShadowDepth="4"/>
+                </Border.Effect>
+                <Frame Name="frameMain"/>
+            </Border>
+        </DockPanel>
     </Grid>
 </Window>

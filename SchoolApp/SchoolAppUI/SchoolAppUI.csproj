@@ -101,7 +101,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\school.png" />
   </ItemGroup>
