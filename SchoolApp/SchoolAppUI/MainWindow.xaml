@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Name="heading" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Content="Please enter your user details" Margin="0,15"/>
-        <!--username and password section-->
+        <!--username and password section with image-->
         <Image Grid.Column="0" Grid.Row="1" Source="/Images/school.png" Width="60" Height="60" HorizontalAlignment="Center" Margin="0,0,30,0"/>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Label Grid.Row="1" Grid.Column="0" Content="Username" FontSize="15" HorizontalAlignment="Right" Margin="30,0"/>
@@ -28,7 +28,7 @@
             <TextBox Name="txtUsername" Grid.Row="1" Grid.Column="1" Height="auto" Margin="1,5" Width="200" HorizontalAlignment="Left"/>
             <PasswordBox Name="txtPassword" Grid.Row="2" Grid.Column="1" Height="auto" Margin="1,5" Width="200" HorizontalAlignment="Left"/>
         </StackPanel>
-        <!--button section-->
+        <!--button section with error message-->
         <Label Name="errorMsgLogin" Grid.Column="0" Grid.Row="2" Content="The details you have entered are incorrect." HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFFF001D" Visibility="Hidden"/>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="160">
             <Button Name="btnCancel" Content="Cancel" Height="25" Width="60" Margin="10"/>
