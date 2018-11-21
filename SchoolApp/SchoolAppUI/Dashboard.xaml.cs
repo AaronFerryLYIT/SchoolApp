@@ -23,5 +23,41 @@ namespace SchoolAppUI
         {
             InitializeComponent();
         }
+
+        private void viewStud_Click(object sender, RoutedEventArgs e)
+        {
+            viewStudents viewStudents = new viewStudents();
+            frameMain.Navigate(viewStudents);
+        }
+
+        private void viewStats_Click(object sender, RoutedEventArgs e)
+        {
+            viewPerformance viewStats = new viewPerformance();
+            frameMain.Navigate(viewStats);
+        }
+
+        private void addResult_Click(object sender, RoutedEventArgs e)
+        {
+            AddResult add = new AddResult();
+            frameMain.Navigate(add);
+        }
+
+        private void viewResult_Click(object sender, RoutedEventArgs e)
+        {
+            ViewResult viewResult = new ViewResult();
+            frameMain.Navigate(viewResult);
+        }
+
+        private void viewUsers_Click(object sender, RoutedEventArgs e)
+        {
+            ViewUsers allUsers = new ViewUsers();
+            frameMain.Navigate(allUsers);
+        }
+
+        private void addUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddUser addUser = new AddUser();
+            frameMain.Navigate(addUser);
+        }
     }
 }
