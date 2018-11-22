@@ -169,5 +169,11 @@
   <ItemGroup>
     <Resource Include="Images\school.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBLibrary\DBLibrary.csproj">
+      <Project>{a0006b9d-b4f0-4453-befb-00eb32b31b78}</Project>
+      <Name>DBLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
