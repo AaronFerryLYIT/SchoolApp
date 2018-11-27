@@ -29,5 +29,35 @@ namespace SchoolAppUI
         {
             InitializeComponent();
         }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string curUser = txtUsername.Text;
+            string curPassword = txtPassword.Password;
+            ///.where uses a lambda expression, like an if statement
+            ///.Where(t => t.username == curUser && t.password == curPassword)
+            foreach (var user in db.Users)
+            {
+                if(user.username == curUser && user.password == curPassword)
+                {
+                    Dashboard dashboard = new Dashboard(user);
+                    this.Hide();
+                    dashboard.ShowDialog();
+                }
+                else
+                {
+                    errorMsgLogin.Visibility = Visibility.Visible;
+                    txtUsername.Text = String.Empty;
+                    txtPassword.Password = String.Empty;
+                }
+                
+            }
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Environment.Exit(0);
+        }
     }
 }
