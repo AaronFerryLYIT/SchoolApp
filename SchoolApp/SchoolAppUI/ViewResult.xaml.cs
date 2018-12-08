@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,21 @@ namespace SchoolAppUI
     /// </summary>
     public partial class ViewResult : Page
     {
+        SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
+        List<Result> results = new List<Result>();
         public ViewResult()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ///set source of the items as users in list
+            lstViewResults.ItemsSource = results;
+            foreach (var stud in db.Results)
+            {
+                results.Add(stud);
+            }
         }
     }
 }

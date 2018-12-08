@@ -20,10 +20,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <ComboBox IsEnabled="False" Name="studentsCombo" Grid.Row="0" Grid.Column="0" Width="150" HorizontalAlignment="Left" Text="Choose Student..." Margin="5">
-                <ComboBoxItem>Student Name</ComboBoxItem>
-                <ComboBoxItem>Student Name</ComboBoxItem>
-                <ComboBoxItem>Student Name</ComboBoxItem>
+            <ComboBox DisplayMemberPath="name" Name="studentPerCombo" Grid.Row="0" Grid.Column="0" Width="150" HorizontalAlignment="Left" Text="Choose Student..." ItemsSource="{Binding name}" Margin="5">
             </ComboBox>
             <DVC:Chart Name="statsChart" Width="700" Height="400" Background="Azure" Foreground="Black" Title="Your Performance" LegendTitle="Your Results">
                 <DVC:Chart.Series>
