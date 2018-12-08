@@ -30,13 +30,14 @@
             <TextBox Name="password" Margin="10"></TextBox>
             <TextBox Name="name" Margin="10"></TextBox>
             <TextBox Name="address" Margin="10"></TextBox>
-            <TextBox Name="dob" Margin="10"></TextBox>
+            <DatePicker Name="date" Margin="10"></DatePicker>
             <ComboBox Name="userRole" Width="150" Margin="5">
                 <ComboBoxItem>Teacher</ComboBoxItem>
                 <ComboBoxItem>Student</ComboBoxItem>
+                <ComboBoxItem>Headmaster</ComboBoxItem>
             </ComboBox>
 
         </StackPanel>
-        <Button Grid.Row="1" Grid.Column="1" Name="addResultbtn" Content="Add User" Width="100" Height="30"></Button>
+        <Button Grid.Row="1" Grid.Column="1" Name="addResultbtn" Content="Add User" Width="100" Height="30" Click="AddResultbtn_Click"></Button>
     </Grid>
 </Page>
