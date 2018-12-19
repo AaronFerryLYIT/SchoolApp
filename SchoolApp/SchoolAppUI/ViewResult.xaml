@@ -10,7 +10,8 @@
       Title="ViewResult">
 
     <Grid>
-        <ListView Name="lstViewResults" FontSize="20">
+        <Label Name="noResultsLbl" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+        <ListView Name="lstViewResults" FontSize="20" Visibility="Collapsed">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Result ID" Width="100">
@@ -23,7 +24,7 @@
                     <GridViewColumn Header="Class" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding class_name}"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=Class.class_name}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

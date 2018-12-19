@@ -34,8 +34,8 @@ namespace SchoolAppUI
         {
             string curUser = txtUsername.Text;
             string curPassword = txtPassword.Password;
-            ///.where uses a lambda expression, like an if statement
-            ///.Where(t => t.username == curUser && t.password == curPassword)
+            //.where uses a lambda expression, like an if statement
+            //.Where(t => t.username == curUser && t.password == curPassword)
             foreach (var user in db.Users)
             {
                 if(user.username == curUser && user.password == curPassword)
@@ -43,15 +43,28 @@ namespace SchoolAppUI
                     Dashboard dashboard = new Dashboard(user);
                     this.Hide();
                     dashboard.ShowDialog();
+                    //try to create a loop where once dashboard is closed go back to login screen
+                    isClosed();
+                    /*if (dashboard.Closing)
+                    {
+                        this.Close();
+                    }*/
                 }
                 else
                 {
+                    //if user not found display error message and clear boxes
                     errorMsgLogin.Visibility = Visibility.Visible;
                     txtUsername.Text = String.Empty;
                     txtPassword.Password = String.Empty;
                 }
                 
             }
+        }
+
+        private void isClosed()
+        {
+            this.Close();
+            //throw new NotImplementedException();
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)

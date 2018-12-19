@@ -31,7 +31,8 @@ namespace SchoolAppUI
 
         private void viewStud_Click(object sender, RoutedEventArgs e)
         {
-            viewStudents viewStudents = new viewStudents();
+            //pass in the teacher's id
+            viewStudents viewStudents = new viewStudents(curUser.user_id);
             frameMain.Navigate(viewStudents);
         }
 
@@ -43,13 +44,14 @@ namespace SchoolAppUI
 
         private void addResult_Click(object sender, RoutedEventArgs e)
         {
-            AddResult add = new AddResult();
+            //pass user id for the purpose of checking their class id
+            AddResult add = new AddResult(curUser.user_id);
             frameMain.Navigate(add);
         }
 
         private void viewResult_Click(object sender, RoutedEventArgs e)
         {
-            ViewResult viewResult = new ViewResult();
+            ViewResult viewResult = new ViewResult(curUser.user_id);
             frameMain.Navigate(viewResult);
         }
 
