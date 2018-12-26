@@ -16,9 +16,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="lstViewUsers" FontSize="20">
+        <ListView Name="lstViewUsers" FontSize="15" SelectionChanged="LstViewUsers_SelectionChanged">
             <ListView.View>
                 <GridView>
+                    
                     <GridViewColumn Header="User ID" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -26,6 +27,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Username" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -33,6 +35,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="User Role" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -40,6 +43,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Address" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -47,29 +51,27 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
                     <GridViewColumn Header="DOB" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding dob}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Delete" Width="90">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button HorizontalAlignment="Center" Content="Delete"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Edit" Width="70">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button HorizontalAlignment="Center" Content="Edit"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding dob, StringFormat=d}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
+
+            <ListView.ContextMenu>
+                <ContextMenu Name="menuUserList" IsEnabled="True">
+                    <ContextMenu.Items>
+                        <MenuItem Header="Delete User" Name="menuHeaderDelete" IsEnabled="False" Click="MenuHeaderDelete_Click"></MenuItem>
+                        <MenuItem Header="Edit User" Name="menuHeaderEdit" IsEnabled="False" Click="MenuHeaderEdit_Click"></MenuItem>
+                    </ContextMenu.Items>
+                </ContextMenu>             
+            </ListView.ContextMenu>
         </ListView>
+
+        
     </Grid>
 </Page>

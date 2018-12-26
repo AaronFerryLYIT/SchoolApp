@@ -62,10 +62,11 @@ namespace SchoolAppUI
         private void saveUser(User user)
         {
             db.Entry(user).State = System.Data.Entity.EntityState.Added;
+            //if save changes returns 0 that means it hasn't saved 1 does
             db.SaveChanges();
         }
 
-        private void AddResultbtn_Click(object sender, RoutedEventArgs e)
+        private void AddUserbtn_Click(object sender, RoutedEventArgs e)
         {
             //this is to stop crash if a user doesn't enter a date value
             if (date.Text == "" || username.Text == "" || password.Text == "" || name.Text == "" || address.Text == "")

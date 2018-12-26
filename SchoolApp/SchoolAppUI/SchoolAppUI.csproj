@@ -80,6 +80,12 @@
     <Compile Include="AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="editUserPopUp.xaml.cs">
+      <DependentUpon>editUserPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="studResultsPopUp.xaml.cs">
+      <DependentUpon>studResultsPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="viewPerformance.xaml.cs">
       <DependentUpon>viewPerformance.xaml</DependentUpon>
     </Compile>
@@ -104,6 +110,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="editUserPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,6 +129,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="studResultsPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="viewPerformance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

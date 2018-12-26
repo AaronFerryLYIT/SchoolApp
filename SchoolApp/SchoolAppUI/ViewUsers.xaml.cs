@@ -23,20 +23,80 @@ namespace SchoolAppUI
     {
         SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
         List<User> users = new List<User>();
+        User selectedUser;
+        bool ifSearch = false;
+        string searchString;
 
-        public ViewUsers()
+        public ViewUsers(bool search, string searchString)
         {
             InitializeComponent();
+            ifSearch = search;
+            this.searchString = searchString;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ///set source of the items as users in list
-            lstViewUsers.ItemsSource = users;
-            foreach (var user in db.Users)
+            resetList();
+            if(users.Count == 0)
             {
-                users.Add(user);
+                MessageBox.Show("No users were found.");
             }
+        }
+
+        private void resetList()
+        {
+            //set source of the items as users in list
+            lstViewUsers.ItemsSource = users;
+            users.Clear();
+            if (!ifSearch)
+            {
+                foreach (var user in db.Users)
+                {
+                    users.Add(user);
+                }
+            }
+            else if (ifSearch)
+            {
+                foreach (var user in db.Users.Where(s => s.name.Contains(searchString)))
+                {
+                    users.Add(user);
+                }
+            }
+            lstViewUsers.Items.Refresh();
+        }
+
+        private void LstViewUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstViewUsers.SelectedIndex >= 0)
+            {
+                //set the local user variable to the selected item in the list view
+                selectedUser = users.ElementAt(lstViewUsers.SelectedIndex);
+                if (selectedUser.user_id > 0)
+                {
+                    menuHeaderDelete.IsEnabled = true;
+                    menuHeaderEdit.IsEnabled = true;
+                }
+            }            
+        }
+
+        private void MenuHeaderDelete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this user?", "Delete User", MessageBoxButton.YesNoCancel, MessageBoxImage.Exclamation);
+            if (MessageBoxResult.Yes == result)
+            {
+                db.Users.RemoveRange(db.Users.Where(del => del.user_id == selectedUser.user_id));
+                db.SaveChanges();
+                resetList();
+            }
+            
+        }
+
+        private void MenuHeaderEdit_Click(object sender, RoutedEventArgs e)
+        {
+            editUserPopUp popup = new editUserPopUp(selectedUser);
+            popup.ShowDialog();
+            popup.Close();
+            resetList();
         }
     }
 }

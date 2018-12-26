@@ -3,13 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
       xmlns:local="clr-namespace:SchoolAppUI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"
       Title="viewPerformance">
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,16 +16,29 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel>
+        
+        <StackPanel Grid.Column="0">
             <ComboBox DisplayMemberPath="name" Name="studentPerCombo" Grid.Row="0" Grid.Column="0" Width="150" HorizontalAlignment="Left" Text="Choose Student..." ItemsSource="{Binding name}" Margin="5">
             </ComboBox>
-            <DVC:Chart Name="statsChart" Width="700" Height="400" Background="Azure" Foreground="Black" Title="Your Performance" LegendTitle="Your Results">
-                <DVC:Chart.Series>
-                    <DVC:ColumnSeries IndependentValueBinding="{Binding Path=key}" DependentValueBinding="{Binding Path=value}"/>
-                </DVC:Chart.Series>
-            </DVC:Chart>
+
+            <Label Margin="0 100 0 0" HorizontalAlignment="Right" FontSize="15">Your average mark:</Label>
+            <Label Margin="0 30 0 0" HorizontalAlignment="Right" FontSize="15">Your highest mark:</Label>
+            <Label Margin="0 30 0 0" HorizontalAlignment="Right" FontSize="15">Your lowest mark:</Label>
+            
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox Name="avrMark" Height="20" Margin="0 140 0 0" Width="10" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="hghMark" Height="20" Margin="0 40 0 0" Width="10" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="lowMark" Height="20" Margin="0 40 0 0" Width="10" HorizontalAlignment="Left"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <Label Name="averageMark" FontSize="15" Margin="0 130 0 0"></Label>
+            <Label Name="highestMark" FontSize="15" Margin="0 30 0 0"></Label>
+            <Label Name="lowestMark" FontSize="15" Margin="0 30 0 0"></Label>
         </StackPanel>
     </Grid>
     

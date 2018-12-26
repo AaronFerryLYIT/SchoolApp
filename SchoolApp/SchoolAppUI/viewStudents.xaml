@@ -16,7 +16,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="lstViewStuds" FontSize="20" MouseDown="LstViewStuds_MouseDown">
+        <ListView Name="lstViewStuds" FontSize="15" SelectionChanged="LstViewStuds_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="User ID" Width="100">
@@ -36,7 +36,7 @@
                     <GridViewColumn Header="Date of Birth" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Dob}"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Dob, StringFormat=d}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -56,6 +56,14 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
+
+            <ListView.ContextMenu>
+                <ContextMenu Name="studentListMenu" IsEnabled="True">
+                    <ContextMenu.Items>
+                        <MenuItem Header="View Results" Name="viewStudentsResults" IsEnabled="False" Click="ViewStudentsResults_Click"></MenuItem>
+                    </ContextMenu.Items>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
     </Grid>
 </Page>

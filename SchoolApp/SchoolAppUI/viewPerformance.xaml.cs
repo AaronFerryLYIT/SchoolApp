@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,36 +18,76 @@ namespace SchoolAppUI
 {
     public partial class viewPerformance : Page
     {
-        //https://social.msdn.microsoft.com/Forums/vstudio/en-US/2f2e4d43-ad0a-402b-b638-799b64762190/wpf-charting-getting-started-how-to-use-the-datavisualization-chart-component-in-wpf-using-mvvm?forum=MSWinWebChart
-        //https://www.c-sharpcorner.com/UploadFile/mahesh/charting-in-wpf/
-        //https://www.youtube.com/watch?v=WMAmQ8VMAis
         SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
         List<User> students = new List<User>();
-        public viewPerformance()
+        
+        User currentUser;
+
+        public viewPerformance(User curUser)
         {
             InitializeComponent();
+            currentUser = curUser;
+            studentPerCombo.SelectionChanged += new SelectionChangedEventHandler(comboBoxSelectionChanged);
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void comboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //this is the make shift bar chart
+            User selectedUser = students[studentPerCombo.SelectedIndex];
+            double average = 0;
+            int highest = 0;
+            int lowest = 0;
+            int count = 0;
+            //create a temp list every time combo box value changes to hold current user's results
+            //add result to list to find highest and lowest values
+            //also calculate the average for each user
+            List<Result> results = results = new List<Result>();
+            foreach (var studentResult in db.Results.Where(r => r.user_id == selectedUser.user_id))
+            {
+                average = average + (double)studentResult.result_mark;
+                count++;
+                results.Add(studentResult);
+            }
 
+            highest = results.Max(h => h.result_mark);
+            lowest = results.Min(l => l.result_mark);
+            average = (average / count);
+
+            //set bar lengths to represent values
+            avrMark.Width = average+1;
+            hghMark.Width = highest+1;
+            lowMark.Width = lowest+1;
+
+            //display value beside bars
+            average = Math.Round(average, 2);
+            averageMark.Content = average + "/100";
+            highestMark.Content = highest + "/100";
+            lowestMark.Content = lowest + "/100";
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            if(currentUser.user_role == "teacher")
+            {
+                studentPerCombo.Visibility = Visibility.Visible;
+                refreshList();
+            }
+            else if(currentUser.user_role == "student")
+            {
+                studentPerCombo.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void refreshList()
+        {
             //populate the combobox of students
             studentPerCombo.ItemsSource = students;
+            students.Clear();
             foreach (var student in db.Users.Where(s => s.user_role == "student"))
             {
                 students.Add(student);
             }
-            //not working null pointer exception
-            /*((ColumnSeries)statsChart.Series[0]).ItemsSource =
-                new KeyValuePair<string, int>[]
-                {
-                    new KeyValuePair<string, int>("Uncle Dave", 25),
-                    new KeyValuePair<string, int>("Ross Tweddell", 21)
-                };*/
+            studentPerCombo.Items.Refresh();
         }
     }
 }

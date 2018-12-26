@@ -24,92 +24,138 @@ namespace SchoolAppUI
         SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
         //this is the new class instance to hold and display information of the student
         List<listStudents> students = new List<listStudents>();
+        listStudents selectedUser;
         int teacherID = 0;
+        bool ifSearch;
+        string searchString;
         //List<User> students = new List<User>();
-        public viewStudents(int teacherID)
+        public viewStudents(int teacherID, bool ifSearch, string searchString)
         {
             InitializeComponent();
             this.teacherID = teacherID;
+            this.ifSearch = ifSearch;
+            this.searchString = searchString;
+        }
+
+        private void resetList()
+        {
+            //set source of the items as users in list
+            lstViewStuds.ItemsSource = students;
+            students.Clear();
+            if (!ifSearch)
+            {
+                //Couldn't get inner join in linq working so using this method to populate the list
+                foreach (var stud in db.Users.Where(s => s.user_role == "student"))
+                {
+                    //if users result class id equals the class id of the teacher(need teachers id to find the right class first)
+                    //create a new instance of a student to add to list
+                    listStudents newStudent = new listStudents
+                    {
+                        User_id = stud.user_id,
+                        Student_name = stud.username,
+                        Address = stud.address,
+                        Dob = stud.dob
+                    };
+                    //this foreach gets the mark from the result table
+                    foreach (var result in db.Results.Where(r => r.user_id == newStudent.User_id))
+                    {
+                        newStudent.Mark = result.result_mark;
+                        //suppose to add class id to a list in the instance
+                        //newStudent.Class_id.Add(result.class_id);
+                    }
+                    students.Add(newStudent);
+                    //only show student that is in a teachers class
+                    /*int teacherClass = 0;
+                    foreach (var tClass in db.Classes.Where(c => c.user_id == teacherID))
+                    {
+                        teacherClass = tClass.class_id;
+                    }*/
+                    //this was a loop that would only add the student if they had a result given by the teacher
+                    /*for(int i =0; i < newStudent.Class_id.Count; i++)
+                    {
+                        if (newStudent.Class_id[i] == teacherClass)
+                        {
+
+                        }
+                    }
+                    foreach (var item in db.Users)
+                {
+                    var student = from u in db.Users
+                                  from r in db.Results
+                                  //from c in db.Classes
+                                  where u.user_id == r.user_id
+                                  select new listStudents()
+                                  {
+                                      User_id = u.user_id,
+                                      Student_name = u.name,
+                                      Address = u.address,
+                                      Dob = u.dob,
+                                      Mark = r.result_mark
+                                  };
+                    students.Add(student);
+                }*/
+                }
+            }
+            else if (ifSearch)
+            {
+                //Couldn't get inner join in linq working so using this method to populate the list
+                foreach (var stud in db.Users.Where(s => s.user_role == "student" && s.name.Contains(searchString)))
+                {
+                    //if users result class id equals the class id of the teacher(need teachers id to find the right class first)
+                    //create a new instance of a student to add to list
+                    listStudents newStudent = new listStudents
+                    {
+                        User_id = stud.user_id,
+                        Student_name = stud.username,
+                        Address = stud.address,
+                        Dob = stud.dob
+                    };
+                    //this foreach gets the mark from the result table
+                    foreach (var result in db.Results.Where(r => r.user_id == newStudent.User_id))
+                    {
+                        newStudent.Mark = result.result_mark;
+                        //suppose to add class id to a list in the instance
+                        //newStudent.Class_id.Add(result.class_id);
+                    }
+                    students.Add(newStudent);
+                }
+            }
+            lstViewStuds.Items.Refresh();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //set source of the items as users in list
-            lstViewStuds.ItemsSource = students;
-            /*foreach (var item in db.Users)
+            resetList();
+            if (students.Count == 0)
             {
-                var student = from u in db.Users
-                              from r in db.Results
-                              //from c in db.Classes
-                              where u.user_id == r.user_id
-                              select new listStudents()
-                              {
-                                  User_id = u.user_id,
-                                  Student_name = u.name,
-                                  Address = u.address,
-                                  Dob = u.dob,
-                                  Mark = r.result_mark
-                              };
-                students.Add(student);
-            }*/
-
-            //Couldn't get inner join in linq working so using this method to populate the list
-            foreach (var stud in db.Users.Where(s => s.user_role == "student"))
-            {
-                //if users result class id equals the class id of the teacher(need teachers id to find the right class first)
-                //var test = from r in db.Results from c in db.Classes where r.class_id == c.class_id;
-                //if()
-                //create a new instance of a student to add to list
-                listStudents newStudent = new listStudents
-                {
-                    User_id = stud.user_id,
-                    Student_name = stud.username,
-                    Address = stud.address,
-                    Dob = stud.dob
-                };
-                //this foreach gets the mark from the result table
-                foreach (var result in db.Results.Where(r => r.user_id == newStudent.User_id))
-                {
-                    newStudent.Mark = result.result_mark;
-                    //suppose to add class id to a list in the instance
-                    //newStudent.Class_id.Add(result.class_id);
-                }
-                students.Add(newStudent);
-                //only show student that is in a teachers class
-                /*int teacherClass = 0;
-                foreach (var tClass in db.Classes.Where(c => c.user_id == teacherID))
-                {
-                    teacherClass = tClass.class_id;
-                }*/
-                //this was a loop that would only add the student if they had a result given by the teacher
-                /*for(int i =0; i < newStudent.Class_id.Count; i++)
-                {
-                    if (newStudent.Class_id[i] == teacherClass)
-                    {
-                        
-                    }
-                }*/
+                MessageBox.Show("No students were found.");
             }
-            
         }
 
-        private void LstViewStuds_MouseDown(object sender, MouseButtonEventArgs e)
+        private void ViewStudentsResults_Click(object sender, RoutedEventArgs e)
         {
-            //ListViewItem item = (ListViewItem)sender;
-            /*if (e.Source.Equals(lstViewStuds.SelectedItem))
+            Result studentResult = new Result();
+            foreach (var result in db.Results.Where(r => r.user_id == selectedUser.User_id))
             {
-                MessageBox.Show("Its working");
-            }*/
-            /*if(lstViewStuds.SelectedItems.Count > 0)
-            {
-                MessageBox.Show("Its working"+lstViewStuds.SelectedItems[0].ToString());
-            }*/
-            var item = ((FrameworkElement)e.OriginalSource).DataContext as User;
-            if (item != null)
-            {
-                MessageBox.Show("Item's Double Click handled!");
+                studentResult = result;
             }
+            //MessageBox.Show("Its working now create popup window");
+            studResultsPopUp popup = new studResultsPopUp(studentResult);
+            popup.ShowDialog();
+            popup.Close();
+        }
 
+        private void LstViewStuds_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstViewStuds.SelectedIndex >= 0)
+            {
+                //set the local user variable to the selected item in the list view
+                selectedUser = students.ElementAt(lstViewStuds.SelectedIndex);
+                if (selectedUser.User_id >= 0)
+                {
+                    viewStudentsResults.IsEnabled = true;
+                }
+            }
         }
     }
 }
