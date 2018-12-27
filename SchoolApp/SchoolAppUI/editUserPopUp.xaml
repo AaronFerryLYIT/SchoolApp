@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolAppUI"
         mc:Ignorable="d"
-        Title="editUserPopUp" 
+        Title="Edit User" 
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         MinHeight="400" MaxHeight="400" MinWidth="500" MaxWidth="500">
@@ -32,7 +32,7 @@
             <TextBox Name="name" Margin="10"></TextBox>
             <TextBox Name="address" Margin="10"></TextBox>
             <DatePicker Name="dob" Margin="10"></DatePicker>
-            <ComboBox DisplayMemberPath="name" Name="userRoleCombo" Width="150" Margin="5">
+            <ComboBox Name="userRoleCombo" Width="150" Margin="5">
                 <ComboBoxItem Name="teacher" Content="teacher"></ComboBoxItem>
                 <ComboBoxItem Name="student" Content="student"></ComboBoxItem>
                 <ComboBoxItem Name="headmaster" Content="headmaster"></ComboBoxItem>

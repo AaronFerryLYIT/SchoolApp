@@ -28,7 +28,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     
-                    <GridViewColumn Header="Username" Width="200">
+                    <GridViewColumn Header="User's Name" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding name}"/>

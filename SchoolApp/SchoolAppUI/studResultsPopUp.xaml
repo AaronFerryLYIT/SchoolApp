@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" 
         Loaded="Window_Loaded"
-        Title="studResultsPopUp" MinHeight="350" MaxHeight="350" MinWidth="460" MaxWidth="460">
+        Title="Student Results" MinHeight="350" MaxHeight="350" MinWidth="460" MaxWidth="460">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
