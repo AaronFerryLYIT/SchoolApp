@@ -14,6 +14,7 @@
         <ListView Name="lstViewResults" FontSize="20" Visibility="Collapsed">
             <ListView.View>
                 <GridView>
+                    
                     <GridViewColumn Header="Result ID" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -21,6 +22,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Class" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -28,6 +30,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Mark" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -35,6 +38,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Date of Result" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -42,6 +46,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Comment" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

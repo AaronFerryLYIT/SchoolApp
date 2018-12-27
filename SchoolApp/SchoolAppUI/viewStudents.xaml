@@ -19,6 +19,7 @@
         <ListView Name="lstViewStuds" FontSize="15" SelectionChanged="LstViewStuds_SelectionChanged">
             <ListView.View>
                 <GridView>
+                    
                     <GridViewColumn Header="User ID" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -26,6 +27,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Student Name" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -33,6 +35,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Date of Birth" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -40,6 +43,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Address" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -47,6 +51,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Recent Result" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

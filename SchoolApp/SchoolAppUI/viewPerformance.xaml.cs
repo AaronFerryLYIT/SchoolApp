@@ -39,6 +39,7 @@ namespace SchoolAppUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            //will change the display depending on the user credentials
             if(currentUser.user_role == "teacher")
             {
                 studentPerCombo.Visibility = Visibility.Visible;
