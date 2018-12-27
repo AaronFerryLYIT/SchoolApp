@@ -32,7 +32,7 @@ namespace SchoolAppUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ///set source of the items as users in list
+            //set source of the items as users in list
             lstViewResults.ItemsSource = results;
             foreach (var stud in db.Results.Where(id => id.user_id == curUser))
             {

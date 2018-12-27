@@ -32,6 +32,7 @@ namespace SchoolAppUI
         {
             if (dontExcedeCharLimit(username, 20) && dontExcedeCharLimit(password, 15) && dontExcedeCharLimit(name, 30) && dontExcedeCharLimit(address, 50))
             {
+                //find the user in the system and change their details
                 foreach (var user in db.Users.Where(u => u.user_id == selectedUser.user_id))
                 {
                     user.username = username;
@@ -89,6 +90,7 @@ namespace SchoolAppUI
                 //converts date picker choice to a datetime object
                 DateTime covertedDate = DateTime.ParseExact(dob.Text, "d", null);
                 updateUser(username.Text, password.Text, role, name.Text, address.Text, covertedDate);
+                //closes the pop up window
                 this.Close();
             }
         }

@@ -11,7 +11,7 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,24 +19,24 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Grid.Column="0">
-            <ComboBox DisplayMemberPath="name" Name="studentPerCombo" Grid.Row="0" Grid.Column="0" Width="150" HorizontalAlignment="Left" Text="Choose Student..." ItemsSource="{Binding name}" Margin="5">
-            </ComboBox>
+        <ComboBox DisplayMemberPath="name" Name="studentPerCombo" Grid.Row="0" Grid.Column="0" Width="150" HorizontalAlignment="Left" Text="Choose Student..." ItemsSource="{Binding name}" Margin="5">
+        </ComboBox>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            
 
-            <Label Margin="0 100 0 0" HorizontalAlignment="Right" FontSize="15">Your average mark:</Label>
+            <Label Margin="0 125 0 0" HorizontalAlignment="Right" FontSize="15">Your average mark:</Label>
             <Label Margin="0 30 0 0" HorizontalAlignment="Right" FontSize="15">Your highest mark:</Label>
             <Label Margin="0 30 0 0" HorizontalAlignment="Right" FontSize="15">Your lowest mark:</Label>
             
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBox Name="avrMark" Height="20" Margin="0 140 0 0" Width="10" HorizontalAlignment="Left"></TextBox>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBox Name="avrMark" Height="20" Margin="0 133 0 0" Width="10" HorizontalAlignment="Left"></TextBox>
             <TextBox Name="hghMark" Height="20" Margin="0 40 0 0" Width="10" HorizontalAlignment="Left"></TextBox>
             <TextBox Name="lowMark" Height="20" Margin="0 40 0 0" Width="10" HorizontalAlignment="Left"></TextBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="2">
-            <Label Name="averageMark" FontSize="15" Margin="0 130 0 0"></Label>
+        <StackPanel Grid.Column="2" Grid.Row="1">
+            <Label Name="averageMark" FontSize="15" Margin="0 125 0 0"></Label>
             <Label Name="highestMark" FontSize="15" Margin="0 30 0 0"></Label>
             <Label Name="lowestMark" FontSize="15" Margin="0 30 0 0"></Label>
         </StackPanel>

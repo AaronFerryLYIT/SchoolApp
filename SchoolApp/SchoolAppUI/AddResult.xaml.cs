@@ -64,7 +64,11 @@ namespace SchoolAppUI
         private void saveResult(Result result)
         {
             db.Entry(result).State = System.Data.Entity.EntityState.Added;
-            db.SaveChanges();
+            int saved = db.SaveChanges();
+            if (saved == 0)
+            {
+                MessageBox.Show("Result not added");
+            }
         }
         private void AddResultbtn_Click(object sender, RoutedEventArgs e)
         {
@@ -88,22 +92,24 @@ namespace SchoolAppUI
             //if value is an int then parse then create entry
             if(createEntry == true)
             {
-                //try to convert a string to an int
+                //try to convert a string to an int and have to catch the exception
                 try
                 {
                     convertMark = Int32.Parse(mark.Text);
                 }
-                catch
+                catch(Exception message)
                 {
-
+                    message.ToString();
+                    throw;
                 }
+                //if converted make sure mark is between 100 and 0
                 if(convertMark <= 100 && convertMark >= 0)
                 {
                     createResult(convertMark, comment.Text, studentCombo.Text);
                 }
                 else
                 {
-                    errorLbl.Content = "Value is too high!";
+                    errorLbl.Content = "Value is too high or too low!";
                 }
                 
             }

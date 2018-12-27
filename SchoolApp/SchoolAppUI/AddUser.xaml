@@ -32,8 +32,8 @@
             <TextBox Name="address" Margin="10"></TextBox>
             <DatePicker Name="date" Margin="10"></DatePicker>
             <ComboBox Name="userRole" Width="150" Margin="5">
-                <ComboBoxItem Name="teacher" Content="Teacher"></ComboBoxItem>
                 <ComboBoxItem Name="student" Content="Student"></ComboBoxItem>
+                <ComboBoxItem Name="teacher" Content="Teacher"></ComboBoxItem>
                 <ComboBoxItem Name="headmaster" Content="Headmaster"></ComboBoxItem>
             </ComboBox>
 

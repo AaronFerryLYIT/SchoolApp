@@ -63,7 +63,11 @@ namespace SchoolAppUI
         {
             db.Entry(user).State = System.Data.Entity.EntityState.Added;
             //if save changes returns 0 that means it hasn't saved 1 does
-            db.SaveChanges();
+            int saved = db.SaveChanges();
+            if(saved == 0)
+            {
+                MessageBox.Show("User not added");
+            }
         }
 
         private void AddUserbtn_Click(object sender, RoutedEventArgs e)

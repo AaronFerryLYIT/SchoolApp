@@ -34,35 +34,7 @@ namespace SchoolAppUI
         {
             //this is the make shift bar chart
             User selectedUser = students[studentPerCombo.SelectedIndex];
-            double average = 0;
-            int highest = 0;
-            int lowest = 0;
-            int count = 0;
-            //create a temp list every time combo box value changes to hold current user's results
-            //add result to list to find highest and lowest values
-            //also calculate the average for each user
-            List<Result> results = results = new List<Result>();
-            foreach (var studentResult in db.Results.Where(r => r.user_id == selectedUser.user_id))
-            {
-                average = average + (double)studentResult.result_mark;
-                count++;
-                results.Add(studentResult);
-            }
-
-            highest = results.Max(h => h.result_mark);
-            lowest = results.Min(l => l.result_mark);
-            average = (average / count);
-
-            //set bar lengths to represent values
-            avrMark.Width = average+1;
-            hghMark.Width = highest+1;
-            lowMark.Width = lowest+1;
-
-            //display value beside bars
-            average = Math.Round(average, 2);
-            averageMark.Content = average + "/100";
-            highestMark.Content = highest + "/100";
-            lowestMark.Content = lowest + "/100";
+            createBarChart(selectedUser);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -75,7 +47,41 @@ namespace SchoolAppUI
             else if(currentUser.user_role == "student")
             {
                 studentPerCombo.Visibility = Visibility.Collapsed;
+                createBarChart(currentUser);
             }
+        }
+
+        private void createBarChart(User curUser)
+        {
+            double average = 0;
+            int highest = 0;
+            int lowest = 0;
+            int count = 0;
+            //create a temp list every time combo box value changes to hold current user's results
+            //add result to list to find highest and lowest values
+            //also calculate the average for each user
+            List<Result> results = results = new List<Result>();
+            foreach (var studentResult in db.Results.Where(r => r.user_id == curUser.user_id))
+            {
+                average = average + (double)studentResult.result_mark;
+                count++;
+                results.Add(studentResult);
+            }
+
+            highest = results.Max(h => h.result_mark);
+            lowest = results.Min(l => l.result_mark);
+            average = (average / count);
+            average = Math.Round(average, 2);
+
+            //set bar lengths to represent values
+            avrMark.Width = average + 1;
+            hghMark.Width = highest + 1;
+            lowMark.Width = lowest + 1;
+
+            //display value beside bars
+            averageMark.Content = average + "/100";
+            highestMark.Content = highest + "/100";
+            lowestMark.Content = lowest + "/100";
         }
 
         private void refreshList()

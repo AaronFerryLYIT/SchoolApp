@@ -26,8 +26,10 @@ namespace SchoolAppUI
         List<listStudents> students = new List<listStudents>();
         listStudents selectedUser;
         int teacherID = 0;
-        bool ifSearch;
+        //holds value to see if the click was a search click and the name entered
+        bool ifSearch = false;
         string searchString;
+
         //List<User> students = new List<User>();
         public viewStudents(int teacherID, bool ifSearch, string searchString)
         {
@@ -64,36 +66,6 @@ namespace SchoolAppUI
                         //newStudent.Class_id.Add(result.class_id);
                     }
                     students.Add(newStudent);
-                    //only show student that is in a teachers class
-                    /*int teacherClass = 0;
-                    foreach (var tClass in db.Classes.Where(c => c.user_id == teacherID))
-                    {
-                        teacherClass = tClass.class_id;
-                    }*/
-                    //this was a loop that would only add the student if they had a result given by the teacher
-                    /*for(int i =0; i < newStudent.Class_id.Count; i++)
-                    {
-                        if (newStudent.Class_id[i] == teacherClass)
-                        {
-
-                        }
-                    }
-                    foreach (var item in db.Users)
-                {
-                    var student = from u in db.Users
-                                  from r in db.Results
-                                  //from c in db.Classes
-                                  where u.user_id == r.user_id
-                                  select new listStudents()
-                                  {
-                                      User_id = u.user_id,
-                                      Student_name = u.name,
-                                      Address = u.address,
-                                      Dob = u.dob,
-                                      Mark = r.result_mark
-                                  };
-                    students.Add(student);
-                }*/
                 }
             }
             else if (ifSearch)

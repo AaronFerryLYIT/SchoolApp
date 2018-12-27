@@ -22,11 +22,11 @@ namespace SchoolAppUI
     {
         SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
         List<Result> listResults = new List<Result>();
-        Result student;
+        Result studResult;
         public studResultsPopUp(Result student)
         {
             InitializeComponent();
-            this.student = student;
+            this.studResult = student;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -39,19 +39,20 @@ namespace SchoolAppUI
             //set source of the items as users in list
             lstViewStudRslts.ItemsSource = listResults;
             listResults.Clear();
-            foreach (var studResult in db.Results.Where(r => r.user_id == student.user_id))
+            //find the results connect to the current clicked user
+            foreach (var studResult in db.Results.Where(r => r.user_id == studResult.user_id))
             {
                 listResults.Add(studResult);
             }
             lstViewStudRslts.Items.Refresh();
         }
-
+        //will asked if result wants to be deleted and will remove result from system
         private void DeleteResults_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this result?", "Delete Result", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             if (MessageBoxResult.Yes == result)
             {
-                db.Results.RemoveRange(db.Results.Where(del => del.result_id == student.result_id));
+                db.Results.RemoveRange(db.Results.Where(del => del.result_id == studResult.result_id));
                 db.SaveChanges();
                 resetList();               
             }
@@ -59,12 +60,14 @@ namespace SchoolAppUI
 
         private void LstViewStudRslts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lstViewStudRslts.SelectedIndex > 0)
+            //has to be >= or first name wont register click
+            if (lstViewStudRslts.SelectedIndex >= 0)
             {
                 //set the local user variable to the selected item in the list view
-                student = listResults.ElementAt(lstViewStudRslts.SelectedIndex);
-                if (student.user_id > 0)
+                studResult = listResults.ElementAt(lstViewStudRslts.SelectedIndex);
+                if (studResult.user_id >= 0)
                 {
+                    //will allow user to click on delete result
                     deleteResults.IsEnabled = true;
                 }
             }

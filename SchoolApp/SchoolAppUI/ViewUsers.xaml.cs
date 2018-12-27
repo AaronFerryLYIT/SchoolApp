@@ -90,12 +90,13 @@ namespace SchoolAppUI
             }
             
         }
-
+        //displays pop up screen
         private void MenuHeaderEdit_Click(object sender, RoutedEventArgs e)
         {
             editUserPopUp popup = new editUserPopUp(selectedUser);
             popup.ShowDialog();
             popup.Close();
+            //resets list after pop up is closed
             resetList();
         }
     }

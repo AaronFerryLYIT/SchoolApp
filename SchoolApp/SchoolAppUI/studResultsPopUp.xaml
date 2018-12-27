@@ -18,6 +18,7 @@
         <ListView Name="lstViewStudRslts" FontSize="15" SelectionChanged="LstViewStudRslts_SelectionChanged">
             <ListView.View>
                 <GridView>
+                    
                     <GridViewColumn Header="Class" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -25,13 +26,15 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Result" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding result_mark, StringFormat=d}"/>
+                                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding result_mark}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Date" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -39,6 +42,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Comment" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

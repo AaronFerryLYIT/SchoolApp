@@ -24,8 +24,7 @@
             <Label Content="Enter Comment" FontSize="15" Margin="5"></Label>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ComboBox DisplayMemberPath="name" Name="studentCombo" Width="150" Margin="5" Text="{Binding name}">
-            </ComboBox>
+            <ComboBox DisplayMemberPath="name" Name="studentCombo" Width="150" Margin="5" Text="{Binding name}"/>
             <TextBox Name="mark" Margin="10"></TextBox>
             <TextBox Name="comment" Margin="10"></TextBox>
         </StackPanel>
