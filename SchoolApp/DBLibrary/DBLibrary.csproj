@@ -73,6 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SchoolModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="TestMethods.cs" />
     <Compile Include="User.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>

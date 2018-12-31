@@ -62,6 +62,7 @@ namespace SchoolAppUI
             //add result to list to find highest and lowest values
             //also calculate the average for each user
             List<Result> results = results = new List<Result>();
+            int userID = curUser.user_id;
             foreach (var studentResult in db.Results.Where(r => r.user_id == curUser.user_id))
             {
                 average = average + (double)studentResult.result_mark;

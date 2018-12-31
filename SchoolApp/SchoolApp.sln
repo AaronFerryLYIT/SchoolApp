@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAppUI", "SchoolAppUI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBLibrary", "DBLibrary\DBLibrary.csproj", "{A0006B9D-B4F0-4453-BEFB-00EB32B31B78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBLibrary.tests", "DBLibrary.tests\DBLibrary.tests.csproj", "{9AABC7FF-C7AC-4FC4-86B1-99AA82BD680D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A0006B9D-B4F0-4453-BEFB-00EB32B31B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0006B9D-B4F0-4453-BEFB-00EB32B31B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0006B9D-B4F0-4453-BEFB-00EB32B31B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AABC7FF-C7AC-4FC4-86B1-99AA82BD680D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AABC7FF-C7AC-4FC4-86B1-99AA82BD680D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AABC7FF-C7AC-4FC4-86B1-99AA82BD680D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AABC7FF-C7AC-4FC4-86B1-99AA82BD680D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

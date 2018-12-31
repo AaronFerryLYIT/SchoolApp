@@ -32,9 +32,9 @@
             <TextBox Name="address" Margin="10"></TextBox>
             <DatePicker Name="date" Margin="10"></DatePicker>
             <ComboBox Name="userRole" Width="150" Margin="5">
-                <ComboBoxItem Name="student" Content="Student"></ComboBoxItem>
-                <ComboBoxItem Name="teacher" Content="Teacher"></ComboBoxItem>
-                <ComboBoxItem Name="headmaster" Content="Headmaster"></ComboBoxItem>
+                <ComboBoxItem Name="student" Content="student"></ComboBoxItem>
+                <ComboBoxItem Name="teacher" Content="teacher"></ComboBoxItem>
+                <ComboBoxItem Name="headmaster" Content="headmaster"></ComboBoxItem>
             </ComboBox>
 
         </StackPanel>

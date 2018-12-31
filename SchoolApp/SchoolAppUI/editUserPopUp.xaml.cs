@@ -22,6 +22,7 @@ namespace SchoolAppUI
     {
         SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
         User selectedUser;
+        TestMethods methods = new TestMethods();
         public editUserPopUp(User selectedUser)
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace SchoolAppUI
 
         private void updateUser(string username, string password, string user_role, string name, string address, DateTime date)
         {
-            if (dontExcedeCharLimit(username, 20) && dontExcedeCharLimit(password, 15) && dontExcedeCharLimit(name, 30) && dontExcedeCharLimit(address, 50))
+            if (methods.dontExcedeCharLimit(username, 20) && methods.dontExcedeCharLimit(password, 15) && methods.dontExcedeCharLimit(name, 30) && methods.dontExcedeCharLimit(address, 50))
             {
                 //find the user in the system and change their details
                 foreach (var user in db.Users.Where(u => u.user_id == selectedUser.user_id))
@@ -43,39 +44,26 @@ namespace SchoolAppUI
                     user.dob = date;
                 }
             }
-            else if (!dontExcedeCharLimit(username, 20))
+            else if (!methods.dontExcedeCharLimit(username, 20))
             {
                 errorLbl.Content = "Username is too long!";
             }
-            else if (!dontExcedeCharLimit(password, 15))
+            else if (!methods.dontExcedeCharLimit(password, 15))
             {
                 errorLbl.Content = "Password is too long!";
             }
-            else if (!dontExcedeCharLimit(name, 30))
+            else if (!methods.dontExcedeCharLimit(name, 30))
             {
                 errorLbl.Content = "Name is too long!";
             }
-            else if (!dontExcedeCharLimit(address, 50))
+            else if (!methods.dontExcedeCharLimit(address, 50))
             {
                 errorLbl.Content = "Address is too long!";
             }
             //if save changes returns 0 that means it hasn't saved 1 does
             db.SaveChanges();
         }
-
-        private bool dontExcedeCharLimit(string text, int limit)
-        {
-            int numOfChar = text.Length;
-            if (numOfChar > limit)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
+        
         private void UpdateUserbtn_Click(object sender, RoutedEventArgs e)
         {
             //this is to stop crash if a user doesn't enter a date value
