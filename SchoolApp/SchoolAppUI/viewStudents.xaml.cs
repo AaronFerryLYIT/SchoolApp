@@ -78,7 +78,7 @@ namespace SchoolAppUI
                     listStudents newStudent = new listStudents
                     {
                         User_id = stud.user_id,
-                        Student_name = stud.username,
+                        Student_name = stud.name,
                         Address = stud.address,
                         Dob = stud.dob
                     };
