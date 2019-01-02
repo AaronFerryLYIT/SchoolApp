@@ -1,6 +1,7 @@
 ﻿using DBLibrary;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace SchoolAppUI
             string curUser = txtUsername.Text;
             string curPassword = txtPassword.Password;
             //.where uses a lambda expression, like an if statement
-            //.Where(t => t.username == curUser && t.password == curPassword)
+            //.Where(t => t.username == curUser && t.password == curPassword)            
             if(curPassword == "" || curUser == "")
             {
                 errorMsgLogin.Visibility = Visibility.Visible;
