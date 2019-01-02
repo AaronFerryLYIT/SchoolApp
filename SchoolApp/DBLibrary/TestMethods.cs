@@ -24,20 +24,28 @@ namespace DBLibrary
             }
         }
 
-        public double calculateAverage(int curUserID)
+        public bool checkStatistics(List<Result> results, double sum)
         {
-            double average = 0;
-            int count = 0;
-            List<Result> results = results = new List<Result>();
-            foreach (var studentResult in db.Results.Where(r => r.user_id == curUserID))
+            int highest = results.Max(h => h.result_mark);
+            int lowest = results.Min(l => l.result_mark);
+            double average = (sum / results.Count);
+            average = Math.Round(average, 2);
+            if(highest < 0 || highest > 100)
             {
-                average = average + (double)studentResult.result_mark;
-                count++;
-                results.Add(studentResult);
+                return false;
             }
-            average = (average / count);
-            //average = Math.Round(average, 2);
-            return average;
+            if(lowest < 0 || lowest > 100)
+            {
+                return false;
+            }
+            if(average < 0 || average > 100)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

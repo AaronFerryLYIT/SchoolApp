@@ -20,15 +20,7 @@ namespace DBLibrary
         public int result_mark { get; set; }
         public System.DateTime result_date { get; set; }
         public string comment { get; set; }
-
-        public string test
-        {
-            get
-            {
-                return $"{result_mark} test";
-            }
-        }
-    
+            
         public virtual Class Class { get; set; }
         public virtual User User { get; set; }
     }

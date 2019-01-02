@@ -8,7 +8,7 @@ using Xunit;
 
 namespace DBLibrary.tests
 {
-    public class CharLimitTest
+    public class UnitTests
     {
         //[Fact]
         [Theory]
@@ -26,16 +26,24 @@ namespace DBLibrary.tests
             Assert.Equal(expected, actual);
         }
 
-        [Theory]
-        //student alice cooper, average should be 67
-        [InlineData(1010,67)]
-        public void TestAverage_DoubleShouldBeWithinRange(int curUserID, double expected)
+        [Fact]
+        public void TestStatistics_ValuesShouldBeWithinRange()
         {
+            //Arrange
             TestMethods methods = new TestMethods();
-
-            double actual = methods.calculateAverage(curUserID);
-
-            Assert.Equal(expected, actual);
+            List<Result> results = new List<Result>();
+            results.Add(new Result { result_mark = 78 });
+            results.Add(new Result { result_mark = 56 });
+            results.Add(new Result { result_mark = 90 });
+            double sum = 0;
+            foreach (var studentResult in results)
+            {
+                sum = sum + (double)studentResult.result_mark;
+            }
+            //Actual
+            bool actual = methods.checkStatistics(results, sum);
+            //Assert
+            Assert.True(actual);
         }
     }
 }
