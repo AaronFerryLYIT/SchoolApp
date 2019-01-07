@@ -11,6 +11,7 @@ namespace DBLibrary.tests
     public class UnitTests
     {
         //[Fact]
+        //tests to see if string entered is within a specified limit
         [Theory]
         [InlineData ("bqwertyuiop",10,false)]
         [InlineData ("b",10,true)]
@@ -26,6 +27,7 @@ namespace DBLibrary.tests
             Assert.Equal(expected, actual);
         }
 
+        //tests to see if the values found in database for the highest lowest and average are within 0 - 100
         [Fact]
         public void TestStatistics_ValuesShouldBeWithinRange()
         {

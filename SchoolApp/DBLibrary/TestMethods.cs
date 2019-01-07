@@ -8,8 +8,6 @@ namespace DBLibrary
 {
     public class TestMethods
     {
-        SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
-
         //takes a string and the limit number to check to see if they go over
         public bool dontExcedeCharLimit(string text, int limit)
         {
@@ -28,6 +26,7 @@ namespace DBLibrary
         {
             int highest = results.Max(h => h.result_mark);
             int lowest = results.Min(l => l.result_mark);
+            //the sum value is after looping through a student's results and added them together
             double average = (sum / results.Count);
             average = Math.Round(average, 2);
             if(highest < 0 || highest > 100)

@@ -20,7 +20,7 @@ namespace SchoolAppUI
     {
         SchoolDBEntities db = new SchoolDBEntities("metadata=res://*/SchoolModel.csdl|res://*/SchoolModel.ssdl|res://*/SchoolModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.10;initial catalog=schoolDB;user id=aaron;password=Password16;MultipleActiveResultSets=True;App=EntityFramework'");
         List<User> students = new List<User>();
-        
+        TestMethods methods = new TestMethods();
         User currentUser;
 
         public viewPerformance(User curUser)
@@ -69,21 +69,28 @@ namespace SchoolAppUI
                 count++;
                 results.Add(studentResult);
             }
+            if(methods.checkStatistics(results, average))
+            {
+                highest = results.Max(h => h.result_mark);
+                lowest = results.Min(l => l.result_mark);
+                average = (average / count);
+                average = Math.Round(average, 2);
 
-            highest = results.Max(h => h.result_mark);
-            lowest = results.Min(l => l.result_mark);
-            average = (average / count);
-            average = Math.Round(average, 2);
+                //set bar lengths to represent values
+                avrMark.Width = average + 1;
+                hghMark.Width = highest + 1;
+                lowMark.Width = lowest + 1;
 
-            //set bar lengths to represent values
-            avrMark.Width = average + 1;
-            hghMark.Width = highest + 1;
-            lowMark.Width = lowest + 1;
-
-            //display value beside bars
-            averageMark.Content = average + "/100";
-            highestMark.Content = highest + "/100";
-            lowestMark.Content = lowest + "/100";
+                //display value beside bars
+                averageMark.Content = average + "/100";
+                highestMark.Content = highest + "/100";
+                lowestMark.Content = lowest + "/100";
+            }
+            else
+            {
+                MessageBox.Show("There was something wrong with the calculation of the results.");
+            }
+            
         }
 
         private void refreshList()
